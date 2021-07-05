@@ -1,7 +1,13 @@
+// làm việc với callback không dùng synchronous 
+//nên tất cả dưới đây code dùng ()=>{} cho asynchronous
 const fs = require('fs');
 const crypto = require('crypto');
 // TODO: phụ trợ đếm giờ operation
 const start = Date.now();
+
+// tăng kích thước thread pool bằng cách set cứng 1
+// có nghĩa ép chạy 1 luồng
+process.env.UV_THREADPOOL_SIZE=2;
 
 setTimeout(() => console.log("TImer 1 finish!"), 0);
 setImmediate(() => console.log("Immididate 1 finish!"));
