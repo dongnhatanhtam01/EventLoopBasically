@@ -23,20 +23,31 @@ fs.readFile('text.txt', () => {
    * nên nextTịck() chạy trước setImmidiate trong ca này */
   process.nextTick(() => console.log("Process.nextTick done!"));
 
-  /** microTaskQueue thử nghiệm chạy 4 luồng libuv */
-  // thread #1
-  crypto.pbkdf2('password', 'salt', 100000, 1024, 'sha512', () => {
-    console.log(Date.now() - start, "Password encrypted");
-  })
-  crypto.pbkdf2('password', 'salt', 100000, 1024, 'sha512', () => {
-    console.log(Date.now() - start, "Password encrypted");
-  })
-  crypto.pbkdf2('password', 'salt', 100000, 1024, 'sha512', () => {
-    console.log(Date.now() - start, "Password encrypted");
-  })
-  // thread #4
-  crypto.pbkdf2('password', 'salt', 100000, 1024, 'sha512', () => {
-    console.log(Date.now() - start, "Password encrypted");
-  })
+ 
+  // synchro
+  crypto.pbkdf2Sync('password', 'salt', 100000, 1024, 'sha512');
+  console.log(Date.now() - start, "Password encrypted");
+  crypto.pbkdf2Sync('password', 'salt', 100000, 1024, 'sha512');
+  console.log(Date.now() - start, "Password encrypted");
+  crypto.pbkdf2Sync('password', 'salt', 100000, 1024, 'sha512');
+  console.log(Date.now() - start, "Password encrypted");
+  crypto.pbkdf2Sync('password', 'salt', 100000, 1024, 'sha512');
+  console.log(Date.now() - start, "Password encrypted");
+ 
+  // /** microTaskQueue thử nghiệm chạy 4 luồng libuv */
+  // // thread #1
+  // crypto.pbkdf2('password', 'salt', 100000, 1024, 'sha512', () => {
+  //   console.log(Date.now() - start, "Password encrypted");
+  // })
+  // crypto.pbkdf2('password', 'salt', 100000, 1024, 'sha512', () => {
+  //   console.log(Date.now() - start, "Password encrypted");
+  // })
+  // crypto.pbkdf2('password', 'salt', 100000, 1024, 'sha512', () => {
+  //   console.log(Date.now() - start, "Password encrypted");
+  // })
+  // // thread #4
+  // crypto.pbkdf2('password', 'salt', 100000, 1024, 'sha512', () => {
+  //   console.log(Date.now() - start, "Password encrypted");
+  // })
 })
 console.log("Hello from the top-level code");
