@@ -1,3 +1,9 @@
+/** EVENT LOOP là một khái niệm quan trọng trong single thread 
+ * Event loop
+ * event loop phase executed order
+ * when task which task should be offload to thread pool
+*/
+
 // làm việc với callback không dùng synchronous 
 //nên tất cả dưới đây code dùng ()=>{} cho asynchronous
 const fs = require('fs');
